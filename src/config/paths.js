@@ -25,10 +25,10 @@ const PUBLIC_DIR = process.env.PUBLIC_DIR
   ? path.resolve(process.env.PUBLIC_DIR)
   : fs.existsSync(path.join(CLIENT_DIST, 'index.html')) ? CLIENT_DIST : LEGACY_PUBLIC;
 
+const uploadDir = '/tmp/uploads';
+
 function ensureDirs() {
-  for (const dir of [UPLOAD_DIR, PHOTO_DIR, POSTER_DIR]) {
-    fs.mkdirSync(dir, { recursive: true });
-  }
+    fs.mkdirSync(uploadDir, { recursive: true });
 }
 
 // Multer resolves its destination at module load, before server.js gets a
@@ -58,4 +58,5 @@ module.exports = {
   ensureDirs,
   sourceDirFor,
   sourcePathFor,
+  uploadDir,
 };
